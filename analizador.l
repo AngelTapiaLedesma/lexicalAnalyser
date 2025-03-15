@@ -1,10 +1,36 @@
 %{
 #include <stdio.h>
 
+// Datos
+
+typedef struct Literal {
+    int posicion;
+    char *literal;
+    struct Literal *siguiente;
+} Literal;
+
+typedef struct Simbolo {
+    int posicion;
+    char *nombre;
+    int tipo;
+    struct Simbolo *siguiente;
+} Simbolo;
 
 // Prototipos
+
 int buscar_catalogo(char *catalogo[], char *literal, int tamano);
 char *token_palRes();
+
+Simbolo *crear_tabla_simbolos();
+Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre);
+Simbolo *buscar_simbolo(Simbolo *tabla, char *nombre);
+void imprimr_tabla_simbolos(Simbolo *tabla);
+
+Literal *crear_tabla();
+Literal *agrega_literal(Literal *tabla, char *literal);
+Literal *buscar_literal(Literal *tabla, char *literal);
+void imprimr_tabla(Literal *tabla);
+
 // Catalogos
 
 char *palRes[16] = {
@@ -72,24 +98,7 @@ char *opRel[6] = {
     "me"
 };
 
-typedef struct Simbolo {
-    int posicion;
-    char *nombre;
-    int tipo;
-    struct Simbolo *siguiente;
-} Simbolo;
-
-// crea la tabla de simbolos que se inicializa en null 
-Simbolo *crear_tabla_simbolos();
-// Agregar simbolo a la tabla de simbolos
-Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre);
-// Buscar simbolo en la tabla
-Simbolo *buscar_simbolo(Simbolo *tabla, char *nombre);
-// Imprime la tabla de simbolos en formato de token
-void imprimr_tabla_simbolos(Simbolo *tabla);
-
-//
-
+// Funciones para la tabla de simbolos
 Simbolo *crear_tabla_simbolos(){
     return NULL;
 }
@@ -127,21 +136,6 @@ void imprimr_tabla_simbolos(Simbolo *tabla) {
 }
 
 // Tabla de cadenas y reales
-// Se usan las mismas funciones ya que las tablas tienen la misma estrcutura, la unica diferenia
-//es que En el parametro tabla hay que pasar su respectivo parametro
-typedef struct Literal {
-    int posicion;
-    char *literal;
-    struct Literal *siguiente;
-} Literal;
-// crea la tabla de simbolos que se inicializa en null 
-Literal *crear_tabla();
-// Agregar simbolo a la tabla de simbolos
-Literal *agrega_literal(Literal *tabla, char *literal);
-// Buscar simbolo en la tabla
-Literal *buscar_literal(Literal *tabla, char *literal);
-// Imprime la tabla de simbolos en formato de token
-void imprimr_tabla(Literal *tabla);
 
 // Funciones adaptadass
 
@@ -195,10 +189,9 @@ char *token_palRes(int pos, char *yytext, char *catalogo[], int tamano){
 }
 
 
-
-
 %}
 %option noyywrap
+
 digito      [0-9]
 
 letra       [a-zA-ZñÑ]
@@ -221,7 +214,7 @@ cadena --.+--
 
 ent [+-]?(0|[1-9]{digito}*)[pg]?
 
-real ({ent}?ʼ{digito}+|{ent}[rR])
+real (({ent}?'{digito}+)|({ent}[rR]))
 
 %%
 
