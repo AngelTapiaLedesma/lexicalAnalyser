@@ -1,0 +1,15 @@
+@variable1_ -> 12p*
+@variable2_ -> 24R*
+@cadena_ -> --Hola Mundo--*
+Si <@variable1_ h @variable2_> #
+    Haz #
+        @resultado_ -> @variable1_ sum @variable2_*
+        [ Este es un comentario dentro del código ]
+    #!
+    Mientras <@resultado_ m 100> #
+        @resultado_ -> @resultado_ mult 2*
+    #!
+#! Sino #
+    @resultado_ -> 0*
+#!
+Nulo*

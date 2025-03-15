@@ -181,7 +181,7 @@ int buscar_catalogo(char *catalogo[], char *literal, int tamano) {
 }
 
 // generador de tokens
-char *token_palRes(int pos, char *yytext, char *catalogo[], int tamano){
+char *token(int pos, char *yytext, char *catalogo[], int tamano){
     int valor = 0;
     valor = buscar_catalogo(catalogo,yytext,tamano);
     printf("(%i,%i)",pos,valor);
@@ -196,11 +196,11 @@ digito      [0-9]
 
 letra       [a-zA-ZñÑ]
 
-comentario   \[{letra}+\]
+comentario   \[.+\]
 
 palRes Bool|Cade|Continuar|Devo|Ent|Fals|Flota|Global|Haz|Mientras|Nulo|Para|Parar|Si|Sino|Ver
 
-simbEsp "<"|">"|"<<"|">>"|"#"|"!#"|"*"|"|"|"°"
+simbEsp "<"|">"|"<<"|">>"|"#"|"#!"|"*"|"|"|"°"
 
 opArim sum|rest|mult|div|mod|inc|dec|exp|dive
 
@@ -218,10 +218,10 @@ real (({ent}?'{digito}+)|({ent}[rR]))
 
 %%
 
-{palRes}       { printf("%s es una palabra reservada\n", yytext); token_palRes(0, yytext, palRes, 16);  }
+{palRes}       { printf("%s es una palabra reservada\n", yytext); token(0, yytext, palRes, 16);  }
 {opArim}       { printf("%s es un operador aritmetico\n", yytext); }
 {opAsign}      { printf("%s es un operador de asignacion\n", yytext); }
-{simbEsp}      { printf("%s es un simbolo especial\n", yytext); }
+{simbEsp}      { printf("%s es un simbolo especial\n", yytext); token(1, yytext, simbEsp, 9);}
 {opRel}        { printf("%s es un operador relacional\n", yytext); }
 {cadena}       { printf("%s es una cadena\n", yytext); }
 {comentario}   { printf("%s es un comentario\n", yytext); }
@@ -229,18 +229,35 @@ real (({ent}?'{digito}+)|({ent}[rR]))
 {real}          { printf("%s es un real\n", yytext); }
 {ent}           { printf("%s es un entero\n", yytext); }
 
-[ \t\n]+       ; // Ignorar espacios, tabulaciones y saltos de línea
+[ \t\n\r]+ ; // Ignorar espacios, tabulaciones y saltos de línea
 .              { printf("%s no es reconocido\n", yytext); }
 
 
 %%
 
-int main() {
-    // Creacion de las tablas dinamicas
+int main(int argc, char **argv) {
+    // Verificar si se proporcionó un archivo de entrada
+    if (argc > 1) {
+        FILE *file = fopen(argv[1], "r"); // Abrir el archivo en modo lectura
+        if (!file) {
+            perror("Error al abrir el archivo");
+            return 1;
+        }
+        yyin = file; // Redirigir la entrada de yylex al archivo
+    } else {
+        printf("Uso: %s <archivo_de_entrada>\n", argv[0]);
+        return 1;
+    }
+
+    // Creación de las tablas dinámicas
     Simbolo *tabla_simbolos = crear_tabla_simbolos();
     Literal *tabla_cadenas = crear_tabla();
     Literal *tabla_reales = crear_tabla();
 
     yylex();  // Ejecutar el analizador léxico
+
+    // Cerrar el archivo después de usarlo
+    fclose(yyin);
+
     return 0;
 }
