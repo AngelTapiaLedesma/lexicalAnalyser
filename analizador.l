@@ -99,76 +99,101 @@ char *opRel[6] = {
 };
 
 // Funciones para la tabla de simbolos
-Simbolo *crear_tabla_simbolos(){
+Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre) {
+    Simbolo *nuevoSimbolo = (Simbolo *)malloc(sizeof(Simbolo));
+    nuevoSimbolo->nombre = strdup(nombre);
+    nuevoSimbolo->tipo = -1;
+    nuevoSimbolo->siguiente = NULL;
+
+    if (tabla == NULL) {
+        return nuevoSimbolo;
+    }
+
+    Simbolo *actual = tabla;
+    while (actual->siguiente != NULL) {
+        actual = actual->siguiente;
+    }
+
+    actual->siguiente = nuevoSimbolo;
+    return tabla;
+}
+
+Simbolo *buscar_simbolo(Simbolo *tabla, char *nombre) {
+    Simbolo *actual = tabla;
+
+    while (actual != NULL) {
+        if (strcmp(actual->nombre, nombre) == 0) {
+            return actual;
+        }
+        actual = actual->siguiente;
+    }
     return NULL;
 }
 
-Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre){
-    // Crea el nuevo simbolo
-    Simbolo *nuevoSimbolo = (Simbolo *)malloc(sizeof(Simbolo));
-    // Le asigna el nombre
-    nuevoSimbolo->nombre = strdup(nombre);
-    // Le asigna el tipo de -1
-    nuevoSimbolo->tipo = -1;
-    // Inserta al inicio de la lista
-    nuevoSimbolo->siguiente = tabla; 
-    return nuevoSimbolo;
-}
-
-Simbolo *buscar_simbolo(Simbolo *tabla, char *nombre){
+void imprimir_tabla_simbolos(Simbolo *tabla) {
     Simbolo *actual = tabla;
 
-    while(actual != NULL){
-        if(strcmp(actual->nombre, nombre) == 0) {
-            return actual; // se encontro el simbolo
-        } 
+    if (actual == NULL) {
+        printf("La tabla de símbolos está vacía.\n");
+        return;
+    }
+
+    printf("Tabla de símbolos:\n");
+    while (actual != NULL) {
+        printf("Nombre: %s, Tipo: %d\n", actual->nombre, actual->tipo);
         actual = actual->siguiente;
     }
-    return NULL; // no se encontro 
 }
 
-void imprimr_tabla_simbolos(Simbolo *tabla) {
-    Simbolo *actual = tabla;
-    while(actual != NULL) {
-        printf("Posicion: %d, Nombre: %s, Tipo: %d\n", actual->posicion, actual->nombre, actual->tipo);
-
-    }
-}
 
 // Tabla de cadenas y reales
 
 // Funciones adaptadass
 
-Literal *crear_tabla(){
+Literal *crear_tabla() {
     return NULL;
 }
 
-Literal *agrega_literal(Literal *tabla, char *literal){
-    // Crea el nuevo simbolo
+Literal *agrega_literal(Literal *tabla, char *literal) {
     Literal *nuevaLiteral = (Literal *)malloc(sizeof(Literal));
-    // Le asigna el nombre
     nuevaLiteral->literal = strdup(literal);
-    // Inserta al inicio de la lista
-    nuevaLiteral->siguiente = tabla; 
+
+    int posicion = 1;
+    Literal *actual = tabla;
+    while (actual != NULL) {
+        posicion++;
+        actual = actual->siguiente;
+    }
+    nuevaLiteral->posicion = posicion;
+
+    nuevaLiteral->siguiente = tabla;
     return nuevaLiteral;
 }
 
-Literal *buscar_literal(Literal *tabla, char *literal){
+Literal *buscar_literal(Literal *tabla, char *literal) {
     Literal *actual = tabla;
 
-    while(actual != NULL){
-        if(strcmp(actual->literal, literal) == 0) {
-            return actual; // se encontro el simbolo
-        } 
+    while (actual != NULL) {
+        if (strcmp(actual->literal, literal) == 0) {
+            return actual;
+        }
         actual = actual->siguiente;
     }
-    return NULL; // no se encontro 
+    return NULL;
 }
 
-void imprimr_tabla(Literal *tabla) {
+void imprimir_tabla(Literal *tabla) {
     Literal *actual = tabla;
-    while(actual != NULL) {
-        printf("Posicion: %d, Literal: %s\n", actual->posicion, actual->literal);
+
+    if (actual == NULL) {
+        printf("La tabla de literales está vacía.\n");
+        return;
+    }
+
+    printf("Tabla de literales:\n");
+    while (actual != NULL) {
+        printf("Posición: %d, Literal: %s\n", actual->posicion, actual->literal);
+        actual = actual->siguiente;
     }
 }
 
@@ -180,13 +205,15 @@ int buscar_catalogo(char *catalogo[], char *literal, int tamano) {
     }
 }
 
-// generador de tokens
+// generador de tokens estáticas
 char *token(int pos, char *yytext, char *catalogo[], int tamano){
     int valor = 0;
     valor = buscar_catalogo(catalogo,yytext,tamano);
     printf("(%i,%i)",pos,valor);
     return "Caracter";
 }
+
+
 
 
 %}
@@ -218,18 +245,18 @@ real (({ent}?'{digito}+)|({ent}[rR]))
 
 %%
 
-{palRes}       { printf("%s es una palabra reservada\n", yytext); token(0, yytext, palRes, 16);  }
-{opArim}       { printf("%s es un operador aritmetico\n", yytext); }
-{opAsign}      { printf("%s es un operador de asignacion\n", yytext); }
-{simbEsp}      { printf("%s es un simbolo especial\n", yytext); token(1, yytext, simbEsp, 9);}
-{opRel}        { printf("%s es un operador relacional\n", yytext); }
+{palRes}       { token(0, yytext, palRes, 16); printf(" %s es una palabra reservada\n", yytext);}
+{opArim}       {token(3, yytext, opArim, 9); printf(" %s es un operador aritmetico\n", yytext); }
+{opAsign}      {token(5, yytext, opAsign, 10); printf(" %s es un operador de asignacion\n", yytext); }
+{simbEsp}      {token(1, yytext, simbEsp, 9); printf(" %s es un simbolo especial\n", yytext); }
+{opRel}        {token(4, yytext, opRel, 6); printf(" %s es un operador relacional\n", yytext); }
 {cadena}       { printf("%s es una cadena\n", yytext); }
 {comentario}   { printf("%s es un comentario\n", yytext); }
-{identificador} { printf("%s es una identificador\n", yytext); }
+{identificador} { printf("%s es una identificador\n", yytext); } // dinámico
 {real}          { printf("%s es un real\n", yytext); }
 {ent}           { printf("%s es un entero\n", yytext); }
 
-[ \t\n\r]+ ; // Ignorar espacios, tabulaciones y saltos de línea
+[ \t\n\r]+ ; // Ignorar espacios, tabulaciones y saltos de      línea
 .              { printf("%s no es reconocido\n", yytext); }
 
 
