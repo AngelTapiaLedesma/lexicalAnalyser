@@ -363,49 +363,49 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[127] =
+static const flex_int16_t yy_accept[126] =
     {   0,
-        0,    0,   14,   12,   11,   11,   12,    4,   12,   12,
+        0,    0,   14,   12,   11,   11,    4,   12,   12,   12,
         4,   12,   12,   12,   10,   10,    4,    4,   12,   12,
        12,   12,   12,   12,   12,   12,   12,   12,   12,   12,
        12,   12,   12,    5,   12,    5,    5,   12,    5,   12,
-       12,   12,   12,   11,    4,    0,    0,    0,    0,   10,
-       10,    0,    3,    0,    9,   10,    0,   10,    4,    4,
-        0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-        0,    0,    0,    1,    0,    0,    0,    0,    0,    0,
-        5,    0,    0,    0,    0,    0,    0,    0,    3,    0,
+       12,    4,   12,   11,    4,    0,    0,    9,    0,    0,
+       10,   10,    0,    3,    0,    0,    9,   10,   10,    4,
+        4,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+        0,    0,    0,    0,    1,    0,    0,    0,    0,    0,
+        0,    5,    0,    0,    0,    0,    0,    0,    3,    0,
         0,    8,    0,    0,    0,    0,    1,    0,    0,    0,
 
-        0,    0,    0,    0,    7,    2,    2,    0,    0,    9,
-        0,    0,    0,    0,    0,    1,    6,    0,    0,    0,
-        0,    0,    0,    0,    0,    0
+        0,    0,    0,    0,    7,    2,    2,    0,    0,    0,
+        0,    0,    0,    0,    1,    6,    0,    0,    0,    0,
+        0,    0,    0,    0,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
+        1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    2,    4,    1,    5,    1,    6,    7,    1,    1,
-        1,    8,    9,    1,   10,    1,   11,   12,   13,   13,
-       13,   13,   13,   13,   13,   13,   13,    1,    1,   14,
-        1,   15,    1,   16,   17,   18,   19,   20,   21,   22,
-       23,   24,   17,   17,   17,   17,   25,   26,   17,   27,
-       17,   28,   29,   17,   17,   30,   17,   17,   17,   17,
-       31,    1,   32,   33,   34,    1,   35,   36,   37,   38,
+        1,    2,    4,    1,    5,    1,    6,    7,    8,    1,
+        1,    9,   10,    1,   11,    1,   12,   13,   14,   14,
+       14,   14,   14,   14,   14,   14,   14,    1,    1,   15,
+        1,   16,    1,   17,   18,   19,   20,   21,   22,   23,
+       24,   25,   18,   18,   18,   18,   26,   27,   18,   28,
+       18,   29,   30,   18,   18,   31,   18,   18,   18,   18,
+       32,    1,   33,   34,   35,    1,   36,   37,   38,   39,
 
-       39,   17,   40,   41,   42,   17,   17,   43,   44,   45,
-       46,   47,   17,   48,   49,   50,   51,   52,   17,   53,
-       17,   54,    1,   55,    1,    1,    1,    1,    1,    1,
+       40,   18,   41,   42,   43,   18,   18,   44,   45,   46,
+       47,   48,   18,   49,   50,   51,   52,   53,   18,   54,
+       18,   55,    1,   56,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,   17,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,   18,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,   56,   17,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,   57,    1,    1,
-        1,    1,    1,   58,   17,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,   57,   18,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,   58,   18,    1,    1,    1,    1,    1,
 
-        1,   59,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -413,118 +413,118 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[60] =
+static const YY_CHAR yy_meta[59] =
     {   0,
         1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
-        1,    3,    3,    1,    1,    1,    4,    4,    4,    4,
-        4,    4,    4,    4,    4,    4,    4,    4,    4,    4,
-        1,    1,    1,    1,    4,    4,    4,    4,    4,    4,
-        4,    4,    4,    4,    4,    4,    4,    4,    4,    4,
-        4,    4,    4,    4,    1,    1,    1,    1,    1
+        1,    1,    3,    3,    1,    1,    1,    3,    3,    3,
+        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
+        3,    1,    1,    1,    1,    3,    3,    3,    3,    3,
+        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
+        3,    3,    3,    3,    3,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[130] =
+static const flex_int16_t yy_base[129] =
     {   0,
-        0,    0,  218,  219,   58,   60,  212,  219,  206,  205,
-      204,   54,   58,  203,   37,   62,  198,  196,    0,  164,
-       34,  170,  163,   43,  164,  171,  163,  153,  168,  160,
-      162,    0,  190,  219,   37,  146,  159,  152,   42,  157,
-      144,  138,  136,   80,  219,  177,  176,  175,  174,   59,
-       85,  173,  219,  172,  219,   44,  129,   88,  175,  174,
-      149,  136,  143,  135,  127,  128,  134,  130,  129,  120,
-      134,  129,  123,  125,  121,  136,  152,  129,  113,  117,
-      219,  126,  124,  118,  111,  115,   82,  148,  147,  141,
-      140,  219,  111,  112,   96,   99,  219,   94,   92,  105,
+        0,    0,  217,  218,   57,   59,  212,  204,  203,   50,
+      202,   54,   58,  201,   58,   62,  196,  194,    0,  162,
+       37,  168,  161,   41,  162,  169,  161,  151,  166,  158,
+      160,    0,  188,  218,   38,  144,  157,  150,   42,  155,
+      142,  218,  136,   77,  218,  176,  175,   79,  174,  173,
+       75,   88,  172,  218,  171,   84,  218,   92,  101,  175,
+      174,  149,  136,  143,  135,  127,  128,  134,  130,  129,
+      120,  134,  129,  123,  125,  121,  136,  152,  129,  113,
+      117,  218,  126,  124,  118,  111,  115,  148,  147,  141,
+      139,  218,  108,  108,   96,   99,  218,   95,   93,  106,
 
-       95,   93,  103,   91,  219,  219,   95,   81,   80,   92,
-      119,   85,   91,   89,   73,   74,  110,   74,   74,   67,
-       63,   77,   76,   59,   43,  219,  145,   85,  149
+       94,   92,  102,   88,  101,  218,   93,   81,   80,  117,
+       84,   90,   89,   71,   71,  108,   72,   69,   63,   56,
+       69,   59,   40,   39,  218,   83,  150,  153
     } ;
 
-static const flex_int16_t yy_def[130] =
+static const flex_int16_t yy_def[129] =
     {   0,
-      126,    1,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  127,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  128,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  129,  126,  126,  126,  126,  126,  126,  126,  126,
-      127,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  128,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  129,  129,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
+      125,    1,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  126,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  127,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  128,  125,  125,  125,  125,  125,  125,  125,
+      125,  126,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  127,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  128,  128,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
 
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      129,  126,  126,  126,  126,  126,  129,  126,  126,  126,
-      126,  126,  126,  126,  126,    0,  126,  126,  126
+      125,  125,  125,  125,  127,  125,  125,  125,  125,  128,
+      125,  125,  125,  125,  125,  128,  125,  125,  125,  125,
+      125,  125,  125,  125,    0,  125,  125,  125
     } ;
 
-static const flex_int16_t yy_nxt[279] =
+static const flex_int16_t yy_nxt[277] =
     {   0,
-        4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
-       14,   15,   16,   17,   18,   19,    4,   20,   21,   22,
-       23,   24,   25,   26,   27,   28,   29,    4,   30,   31,
-       32,    4,   33,    4,    4,    4,   34,   35,   36,    4,
-       37,   38,    4,   39,    4,    4,    4,   40,   41,    4,
-        4,    4,    4,    4,    8,    4,    4,   42,   43,   44,
-       44,   44,   44,   49,   55,   50,   51,   52,   63,   50,
-       51,   55,   53,   58,   58,   78,   56,   67,   79,   64,
-       81,   44,   44,   56,   55,   68,   55,   83,   76,   55,
-       97,   55,   84,  110,  110,   57,   58,   58,   56,   58,
+        4,    5,    6,    4,    7,    8,    9,   10,   11,   12,
+       13,   14,   15,   16,   17,   18,   19,    4,   20,   21,
+       22,   23,   24,   25,   26,   27,   28,   29,    4,   30,
+       31,   32,    4,   33,    4,    4,    4,   34,   35,   36,
+        4,   37,   38,    4,   39,    4,    4,    4,   40,   41,
+        4,    4,    4,    4,    4,   42,    4,   43,   44,   44,
+       44,   44,   48,   48,   50,   56,   51,   52,   53,   56,
+       51,   52,   64,   54,   59,   59,   68,   79,   44,   44,
+       80,   82,   56,   65,   69,   62,   57,   97,   84,   97,
+       57,   48,   48,   85,  124,   56,   48,   48,   58,   56,
 
-       58,   56,   57,  110,  110,   56,   55,   97,   56,   55,
-      125,  124,   55,  123,  122,   55,   97,   57,  121,  117,
-       57,   97,  120,  119,   56,   97,  118,   56,  117,  106,
-      106,   56,   55,  106,   56,   55,   97,  116,   97,  115,
-      114,  113,   97,   57,   97,  112,   57,   61,   61,   88,
-       97,   88,   88,   97,   53,   53,  111,  111,  106,  109,
-      108,  106,  106,  106,  107,  106,   53,  105,   97,  104,
-      103,  102,  101,   97,  100,   99,   98,   97,   96,   95,
-       94,   93,   92,   91,   90,   87,   53,   89,   53,   53,
-       53,   53,   87,   45,   86,   85,   82,   81,   80,   77,
+       59,   59,   58,   57,  123,   58,   57,  122,   56,   58,
+       57,  121,   97,   59,   59,   58,   57,  120,  116,   97,
+       57,  119,   58,   57,  118,   97,  117,  116,   58,   57,
+      106,  106,  106,  105,   97,   58,   57,  115,   97,  114,
+       57,   58,  113,  112,   97,   97,  111,   97,   58,   57,
+       77,   97,   77,   88,   54,   88,   54,  110,  110,  106,
+      109,  108,  106,  106,  106,  107,  106,   54,  105,   97,
+      104,  103,  102,  101,   97,  100,   99,   98,   97,   96,
+       95,   94,   93,   92,   91,   90,   54,   89,   54,   54,
+       54,   54,   45,   87,   86,   83,   82,   81,   78,   76,
 
-       75,   74,   73,   72,   71,   70,   69,   66,   65,   62,
-       60,   59,   54,   48,   47,   46,   45,  126,    3,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126
+       75,   74,   73,   72,   71,   70,   67,   66,   63,   61,
+       60,   55,   49,   47,   46,   45,  125,    3,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125
     } ;
 
-static const flex_int16_t yy_chk[279] =
+static const flex_int16_t yy_chk[277] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    5,
-        5,    6,    6,   12,   15,   12,   12,   13,   21,   13,
-       13,   56,   13,   16,   16,   35,   15,   24,   35,   21,
-       39,   44,   44,   15,   15,   24,   50,   39,  128,   16,
-      125,   56,   39,   87,   87,   15,   51,   51,   50,   58,
+        1,    1,    1,    1,    1,    1,    1,    1,    5,    5,
+        6,    6,   10,   10,   12,   15,   12,   12,   13,   16,
+       13,   13,   21,   13,   16,   16,   24,   35,   44,   44,
+       35,   39,   51,   21,   24,  126,   15,  124,   39,  123,
+       16,   48,   48,   39,  122,   52,   56,   56,   15,   58,
 
-       58,   16,   56,  110,  110,   50,   50,  124,   16,   16,
-      123,  122,   51,  121,  120,   58,  119,   50,  118,  117,
-       16,  116,  115,  114,   51,  113,  112,   58,  111,  109,
-      108,   51,   51,  107,   58,   58,  104,  103,  102,  101,
-      100,   99,   98,   51,   96,   95,   58,  127,  127,  129,
-       94,  129,  129,   93,   91,   90,   89,   88,   86,   85,
-       84,   83,   82,   80,   79,   78,   77,   76,   75,   74,
-       73,   72,   71,   70,   69,   68,   67,   66,   65,   64,
-       63,   62,   61,   60,   59,   57,   54,   52,   49,   48,
-       47,   46,   43,   42,   41,   40,   38,   37,   36,   33,
+       52,   52,   16,   51,  121,   15,   15,  120,   59,   16,
+       16,  119,  118,   59,   59,   51,   52,  117,  116,  115,
+       58,  114,   51,   51,  113,  112,  111,  110,   52,   59,
+      109,  108,  107,  105,  104,   52,   52,  103,  102,  101,
+       58,   59,  100,   99,   98,   96,   95,   94,   59,   59,
+      127,   93,  127,  128,   91,  128,   90,   89,   88,   87,
+       86,   85,   84,   83,   81,   80,   79,   78,   77,   76,
+       75,   74,   73,   72,   71,   70,   69,   68,   67,   66,
+       65,   64,   63,   62,   61,   60,   55,   53,   50,   49,
+       47,   46,   43,   41,   40,   38,   37,   36,   33,   31,
 
-       31,   30,   29,   28,   27,   26,   25,   23,   22,   20,
-       18,   17,   14,   11,   10,    9,    7,    3,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
-      126,  126,  126,  126,  126,  126,  126,  126
+       30,   29,   28,   27,   26,   25,   23,   22,   20,   18,
+       17,   14,   11,    9,    8,    7,    3,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125,  125,  125,  125,  125,
+      125,  125,  125,  125,  125,  125
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -545,12 +545,41 @@ char *yytext;
 #line 2 "analizador.l"
 #include <stdio.h>
 
+// Datos
+typedef struct Literal {
+    int posicion;
+    char *literal;
+    struct Literal *siguiente;
+} Literal;
+
+typedef struct Simbolo {
+    int posicion;
+    char *nombre;
+    int tipo;
+    struct Simbolo *siguiente;
+} Simbolo;
 
 // Prototipos
 int buscar_catalogo(char *catalogo[], char *literal, int tamano);
-char *token_palRes();
-// Catalogos
+char *token(int pos, char *yytext, char *catalogo[], int tamano);
 
+void imprimir_tabla_simbolos(Simbolo *tabla);
+Simbolo *crear_tabla_simbolos();
+Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre);
+int buscar_simbolo(Simbolo *tabla, char *nombre);
+
+Literal *crear_tabla();
+Literal *agrega_literal(Literal *tabla, char *literal);
+int buscar_literal(Literal *tabla, char *literal);
+void imprimir_tabla(Literal *tabla);
+
+// Creación de las tablas dinámicas
+Simbolo *tabla_simbolos = NULL;
+Literal *tabla_cadenas = NULL;
+Literal *tabla_reales = NULL;
+Literal *tabla_enteros = NULL;
+
+// Catalogos
 char *palRes[16] = {
     "Bool",
     "Cade",
@@ -616,109 +645,110 @@ char *opRel[6] = {
     "me"
 };
 
-typedef struct Simbolo {
-    int posicion;
-    char *nombre;
-    int tipo;
-    struct Simbolo *siguiente;
-} Simbolo;
+// Funciones para la tabla de simbolos
+ 
+Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre) {
+    //imprimir_tabla_simbolos(tabla);
+    int res = buscar_simbolo(tabla,nombre);
+    //printf("%d\n",res);
+    if( res == -1){ // Checa si el elemento NO existe, para crearlo
+        Simbolo *nuevoSimbolo = (Simbolo *)malloc(sizeof(Simbolo));
+        nuevoSimbolo->nombre = strdup(nombre);
+        nuevoSimbolo->tipo = -1;
+        nuevoSimbolo->siguiente = NULL;
 
-// crea la tabla de simbolos que se inicializa en null 
-Simbolo *crear_tabla_simbolos();
-// Agregar simbolo a la tabla de simbolos
-Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre);
-// Buscar simbolo en la tabla
-Simbolo *buscar_simbolo(Simbolo *tabla, char *nombre);
-// Imprime la tabla de simbolos en formato de token
-void imprimr_tabla_simbolos(Simbolo *tabla);
-
-//
-
-Simbolo *crear_tabla_simbolos(){
-    return NULL;
-}
-
-Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre){
-    // Crea el nuevo simbolo
-    Simbolo *nuevoSimbolo = (Simbolo *)malloc(sizeof(Simbolo));
-    // Le asigna el nombre
-    nuevoSimbolo->nombre = strdup(nombre);
-    // Le asigna el tipo de -1
-    nuevoSimbolo->tipo = -1;
-    // Inserta al inicio de la lista
-    nuevoSimbolo->siguiente = tabla; 
-    return nuevoSimbolo;
-}
-
-Simbolo *buscar_simbolo(Simbolo *tabla, char *nombre){
-    Simbolo *actual = tabla;
-
-    while(actual != NULL){
-        if(strcmp(actual->nombre, nombre) == 0) {
-            return actual; // se encontro el simbolo
-        } 
-        actual = actual->siguiente;
+        if (tabla == NULL) {
+            return nuevoSimbolo;
+        }
+        Simbolo *actual = tabla; // temporal que almacena el inicio de la tabla
+        while (actual->siguiente != NULL) {
+            actual = actual->siguiente;
+        }
+        actual->siguiente = nuevoSimbolo; // se inserta al final de la tabla
     }
-    return NULL; // no se encontro 
+    return tabla; // Si existe, regresa la tabla, si no existe lo crea y también regresa la tabla
 }
 
-void imprimr_tabla_simbolos(Simbolo *tabla) {
+int buscar_simbolo(Simbolo *tabla, char *nombre) {
     Simbolo *actual = tabla;
-    while(actual != NULL) {
-        printf("Posicion: %d, Nombre: %s, Tipo: %d\n", actual->posicion, actual->nombre, actual->tipo);
+    int valor = 0;
+    while (actual != NULL) {
+        if (strcmp(actual->nombre, nombre) == 0) {
+            return valor; // Retornamos el valor 
+        }
+        actual = actual->siguiente;
+        valor++;
+    }
+    return -1;
+}
 
+void imprimir_tabla_simbolos(Simbolo *tabla) {
+    Simbolo *actual = tabla;
+
+    if (actual == NULL) {
+        printf("La tabla de símbolos está vacía.\n");
+        return;
+    }
+
+    printf("Tabla de símbolos:\n");
+    while (actual != NULL) {
+        printf("Nombre: %s, Tipo: %d\n", actual->nombre, actual->tipo);
+        actual = actual->siguiente;
     }
 }
 
 // Tabla de cadenas y reales
-// Se usan las mismas funciones ya que las tablas tienen la misma estrcutura, la unica diferenia
-//es que En el parametro tabla hay que pasar su respectivo parametro
-typedef struct Literal {
-    int posicion;
-    char *literal;
-    struct Literal *siguiente;
-} Literal;
-// crea la tabla de simbolos que se inicializa en null 
-Literal *crear_tabla();
-// Agregar simbolo a la tabla de simbolos
-Literal *agrega_literal(Literal *tabla, char *literal);
-// Buscar simbolo en la tabla
-Literal *buscar_literal(Literal *tabla, char *literal);
-// Imprime la tabla de simbolos en formato de token
-void imprimr_tabla(Literal *tabla);
 
 // Funciones adaptadass
 
-Literal *crear_tabla(){
-    return NULL;
-}
+Literal *agrega_literal(Literal *tabla, char *literal) {
+    //imprimir_tabla_simbolos(tabla);
+    int res = buscar_literal(tabla,literal);
+    //printf("%d\n",res);
+    if( res == -1){ // Checa si el elemento NO existe, para crearlo
+        Literal *NuevaLiteral = (Literal *)malloc(sizeof(Literal));
+        NuevaLiteral->literal = strdup(literal);
+        NuevaLiteral->siguiente = NULL;
 
-Literal *agrega_literal(Literal *tabla, char *literal){
-    // Crea el nuevo simbolo
-    Literal *nuevaLiteral = (Literal *)malloc(sizeof(Literal));
-    // Le asigna el nombre
-    nuevaLiteral->literal = strdup(literal);
-    // Inserta al inicio de la lista
-    nuevaLiteral->siguiente = tabla; 
-    return nuevaLiteral;
-}
+        if (tabla == NULL) {
+            return NuevaLiteral;
+        }
 
-Literal *buscar_literal(Literal *tabla, char *literal){
-    Literal *actual = tabla;
+        Literal *actual = tabla; // temporal que almacena el inicio de la tabla
+        while (actual->siguiente != NULL) {
+            actual = actual->siguiente;
+        }
 
-    while(actual != NULL){
-        if(strcmp(actual->literal, literal) == 0) {
-            return actual; // se encontro el simbolo
-        } 
-        actual = actual->siguiente;
+        actual->siguiente = NuevaLiteral; // se inserta al final de la tabla
     }
-    return NULL; // no se encontro 
+    return tabla; // Si existe, regresa la tabla, si no existe lo crea y también regresa la tabla
 }
 
-void imprimr_tabla(Literal *tabla) {
+int buscar_literal(Literal *tabla, char *literal) {
     Literal *actual = tabla;
-    while(actual != NULL) {
-        printf("Posicion: %d, Literal: %s\n", actual->posicion, actual->literal);
+    int valor = 0;
+    while (actual != NULL) {
+        if (strcmp(actual->literal, literal) == 0) {
+            return valor; // Retornamos el valor 
+        }
+        actual = actual->siguiente;
+        valor++;
+    }
+    return -1;
+}
+
+void imprimir_tabla(Literal *tabla) {
+    Literal *actual = tabla;
+
+    if (actual == NULL) {
+        printf("La tabla de literales está vacía.\n");
+        return;
+    }
+
+    printf("Tabla de literales:\n");
+    while (actual != NULL) {
+        printf("Posición: %d, Literal: %s\n", actual->posicion, actual->literal);
+        actual = actual->siguiente;
     }
 }
 
@@ -730,19 +760,31 @@ int buscar_catalogo(char *catalogo[], char *literal, int tamano) {
     }
 }
 
-// generador de tokens
-char *token_palRes(int pos, char *yytext, char *catalogo[], int tamano){
+// generador de tokens estáticas
+char *token(int pos, char *yytext, char *catalogo[], int tamano){
     int valor = 0;
     valor = buscar_catalogo(catalogo,yytext,tamano);
     printf("(%i,%i)",pos,valor);
     return "Caracter";
 }
 
+// tokens dinámicos
+char *token_simbolos(int pos, char *nombre, Simbolo **tabla) {
+    *tabla = agrega_simbolo(*tabla, nombre);
+    int valor = buscar_simbolo(*tabla, nombre);
+    printf("(%i,%i)", pos, valor);
+    return "Caracter";
+}
 
+char *token_literales(int pos, char *nombre, Literal **tabla) {
+    *tabla = agrega_literal(*tabla, nombre);
+    int valor = buscar_literal(*tabla, nombre);
+    printf("(%i,%i)", pos, valor);
+    return "Caracter";
+}
 
-
-#line 745 "lex.yy.c"
-#line 746 "lex.yy.c"
+#line 787 "lex.yy.c"
+#line 788 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -959,10 +1001,10 @@ YY_DECL
 		}
 
 	{
-#line 226 "analizador.l"
+#line 269 "analizador.l"
 
 
-#line 966 "lex.yy.c"
+#line 1008 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -989,13 +1031,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 127 )
+				if ( yy_current_state >= 126 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 219 );
+		while ( yy_base[yy_current_state] != 218 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -1021,71 +1063,71 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 228 "analizador.l"
-{ printf("%s es una palabra reservada\n", yytext); token_palRes(0, yytext, palRes, 16);  }
+#line 271 "analizador.l"
+{token(0, yytext, palRes, 16); printf(" %s es una palabra reservada\n", yytext);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 229 "analizador.l"
-{ printf("%s es un operador aritmetico\n", yytext); }
+#line 272 "analizador.l"
+{token(3, yytext, opArim, 9); printf(" %s es un operador aritmetico\n", yytext); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 230 "analizador.l"
-{ printf("%s es un operador de asignacion\n", yytext); }
+#line 273 "analizador.l"
+{token(5, yytext, opAsign, 10); printf(" %s es un operador de asignacion\n", yytext); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 231 "analizador.l"
-{ printf("%s es un simbolo especial\n", yytext); }
+#line 274 "analizador.l"
+{token(1, yytext, simbEsp, 9); printf(" %s es un simbolo especial\n", yytext); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 232 "analizador.l"
-{ printf("%s es un operador relacional\n", yytext); }
+#line 275 "analizador.l"
+{token(4, yytext, opRel, 6); printf(" %s es un operador relacional\n", yytext); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 233 "analizador.l"
-{ printf("%s es una cadena\n", yytext); }
+#line 276 "analizador.l"
+{token_literales(8, yytext, &tabla_cadenas);printf("%s es una cadena\n", yytext); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 234 "analizador.l"
-{ printf("%s es un comentario\n", yytext); }
+#line 277 "analizador.l"
+{printf("%s es un comentario\n", yytext); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 235 "analizador.l"
-{ printf("%s es una identificador\n", yytext); }
+#line 278 "analizador.l"
+{token_simbolos(2, yytext, &tabla_simbolos); printf("%s es una identificador\n", yytext); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 236 "analizador.l"
-{ printf("%s es un real\n", yytext); }
+#line 279 "analizador.l"
+{token_literales(8, yytext, &tabla_reales); printf("%s es un real\n", yytext); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 237 "analizador.l"
-{ printf("%s es un entero\n", yytext); }
+#line 280 "analizador.l"
+{token_literales(8, yytext, &tabla_enteros);printf("%s es un entero\n", yytext); }
 	YY_BREAK
 case 11:
 /* rule 11 can match eol */
 YY_RULE_SETUP
-#line 239 "analizador.l"
-; // Ignorar espacios, tabulaciones y saltos de línea
+#line 281 "analizador.l"
+; // Ignorar espacios, tabulaciones y saltos de      línea
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 240 "analizador.l"
-{ printf("%s no es reconocido\n", yytext); }
+#line 282 "analizador.l"
+{printf("%s no es reconocido\n", yytext); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 243 "analizador.l"
+#line 283 "analizador.l"
 ECHO;
 	YY_BREAK
-#line 1089 "lex.yy.c"
+#line 1131 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1382,7 +1424,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 127 )
+			if ( yy_current_state >= 126 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1410,11 +1452,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 127 )
+		if ( yy_current_state >= 126 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 126);
+	yy_is_jam = (yy_current_state == 125);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -2090,15 +2132,24 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 243 "analizador.l"
+#line 283 "analizador.l"
 
 
-int main() {
-    // Creacion de las tablas dinamicas
-    Simbolo *tabla_simbolos = crear_tabla_simbolos();
-    Literal *tabla_cadenas = crear_tabla();
-    Literal *tabla_reales = crear_tabla();
-
+int main(int argc, char **argv) {
+    // Verificar si se proporcionó un archivo de entrada
+    if (argc > 1) {
+        FILE *file = fopen(argv[1], "r"); // Abrir el archivo en modo lectura
+        if (!file) {
+            perror("Error al abrir el archivo");
+            return 1;
+        }
+        yyin = file; // Redirigir la entrada de yylex al archivo
+    } else {
+        printf("Uso: %s <archivo_de_entrada>\n", argv[0]);
+        return 1;
+    }
     yylex();  // Ejecutar el analizador léxico
+    // Cerrar el archivo después de usarlo
+    fclose(yyin);
     return 0;
 }
