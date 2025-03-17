@@ -1,32 +1,34 @@
 %{
 #include <stdio.h>
 
-// Datos
+// Estructuras para las tablas
 typedef struct Literal {
-    int posicion;
+    int valor;
     char *literal;
     struct Literal *siguiente;
 } Literal;
 
 typedef struct Simbolo {
-    int posicion;
+    int valor;
     char *nombre;
     int tipo;
     struct Simbolo *siguiente;
 } Simbolo;
 
-// Prototipos
+// Prototipos de las funciones
 int buscar_catalogo(char *catalogo[], char *literal, int tamano);
 char *token(int pos, char *yytext, char *catalogo[], int tamano);
-
 void imprimir_tabla_simbolos(Simbolo *tabla);
 Simbolo *crear_tabla_simbolos();
 Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre);
-int buscar_simbolo(Simbolo *tabla, char *nombre);
+Simbolo *buscar_simbolo(Simbolo *tabla, char *nombre);
+
+FILE *abrir_archivo(const char *nombre_archivo, const char *modo);
+void cerrar_archivo(FILE*archivo);
 
 Literal *crear_tabla();
 Literal *agrega_literal(Literal *tabla, char *literal);
-int buscar_literal(Literal *tabla, char *literal);
+Literal *buscar_literal(Literal *tabla, char *literal);
 void imprimir_tabla(Literal *tabla);
 
 // Creación de las tablas dinámicas
@@ -34,6 +36,7 @@ Simbolo *tabla_simbolos = NULL;
 Literal *tabla_cadenas = NULL;
 Literal *tabla_reales = NULL;
 Literal *tabla_enteros = NULL;
+
 
 // Catalogos
 char *palRes[16] = {
@@ -105,37 +108,38 @@ char *opRel[6] = {
  
 Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre) {
     //imprimir_tabla_simbolos(tabla);
-    int res = buscar_simbolo(tabla,nombre);
+    Simbolo *res = buscar_simbolo(tabla,nombre);
     //printf("%d\n",res);
-    if( res == -1){ // Checa si el elemento NO existe, para crearlo
+
+    if( res == NULL){ // Checa si el elemento NO existe, para crearlo
         Simbolo *nuevoSimbolo = (Simbolo *)malloc(sizeof(Simbolo));
         nuevoSimbolo->nombre = strdup(nombre);
         nuevoSimbolo->tipo = -1;
         nuevoSimbolo->siguiente = NULL;
 
         if (tabla == NULL) {
+            nuevoSimbolo->valor = 0;
             return nuevoSimbolo;
         }
         Simbolo *actual = tabla; // temporal que almacena el inicio de la tabla
         while (actual->siguiente != NULL) {
             actual = actual->siguiente;
         }
+        nuevoSimbolo->valor = actual->valor + 1; // Asigna la posición del último elemento + 1
         actual->siguiente = nuevoSimbolo; // se inserta al final de la tabla
     }
     return tabla; // Si existe, regresa la tabla, si no existe lo crea y también regresa la tabla
 }
 
-int buscar_simbolo(Simbolo *tabla, char *nombre) {
+Simbolo *buscar_simbolo(Simbolo *tabla, char *nombre) {
     Simbolo *actual = tabla;
-    int valor = 0;
     while (actual != NULL) {
         if (strcmp(actual->nombre, nombre) == 0) {
-            return valor; // Retornamos el valor 
+            return actual; // Retornamos el valor 
         }
         actual = actual->siguiente;
-        valor++;
     }
-    return -1;
+    return NULL;
 }
 
 void imprimir_tabla_simbolos(Simbolo *tabla) {
@@ -145,28 +149,26 @@ void imprimir_tabla_simbolos(Simbolo *tabla) {
         printf("La tabla de símbolos está vacía.\n");
         return;
     }
-
-    printf("Tabla de símbolos:\n");
+    printf("Pos\tNombre\t\tTipo\n");
     while (actual != NULL) {
-        printf("Nombre: %s, Tipo: %d\n", actual->nombre, actual->tipo);
+        printf("%d\t%s\t%d\n",actual->valor, actual->nombre, actual->tipo);
         actual = actual->siguiente;
     }
 }
 
-// Tabla de cadenas y reales
-
-// Funciones adaptadass
+// Funciones para las tablas de cadenas, reales y enteros
 
 Literal *agrega_literal(Literal *tabla, char *literal) {
-    //imprimir_tabla_simbolos(tabla);
-    int res = buscar_literal(tabla,literal);
-    //printf("%d\n",res);
-    if( res == -1){ // Checa si el elemento NO existe, para crearlo
+    // Buscar si la literal ya existe en la tabla
+    Literal *res = buscar_literal(tabla, literal);
+
+    if (res == NULL) { // Checa si el elemento NO existe, para crearlo
         Literal *NuevaLiteral = (Literal *)malloc(sizeof(Literal));
         NuevaLiteral->literal = strdup(literal);
         NuevaLiteral->siguiente = NULL;
 
         if (tabla == NULL) {
+            NuevaLiteral->valor = 0; // El primer elemento tiene posición 0
             return NuevaLiteral;
         }
 
@@ -174,23 +176,21 @@ Literal *agrega_literal(Literal *tabla, char *literal) {
         while (actual->siguiente != NULL) {
             actual = actual->siguiente;
         }
-
+        NuevaLiteral->valor = actual->valor + 1; // Asigna la posición del último elemento + 1
         actual->siguiente = NuevaLiteral; // se inserta al final de la tabla
     }
     return tabla; // Si existe, regresa la tabla, si no existe lo crea y también regresa la tabla
 }
 
-int buscar_literal(Literal *tabla, char *literal) {
+Literal *buscar_literal(Literal *tabla, char *literal) {
     Literal *actual = tabla;
-    int valor = 0;
     while (actual != NULL) {
         if (strcmp(actual->literal, literal) == 0) {
-            return valor; // Retornamos el valor 
+            return actual; // Retornamos el valor 
         }
         actual = actual->siguiente;
-        valor++;
     }
-    return -1;
+    return NULL;
 }
 
 void imprimir_tabla(Literal *tabla) {
@@ -200,10 +200,9 @@ void imprimir_tabla(Literal *tabla) {
         printf("La tabla de literales está vacía.\n");
         return;
     }
-
-    printf("Tabla de literales:\n");
+    printf("Pos\tLiteral\n");
     while (actual != NULL) {
-        printf("Posición: %d, Literal: %s\n", actual->posicion, actual->literal);
+        printf("%d\t%s\n", actual->valor, actual->literal);
         actual = actual->siguiente;
     }
 }
@@ -216,27 +215,60 @@ int buscar_catalogo(char *catalogo[], char *literal, int tamano) {
     }
 }
 
-// generador de tokens estáticas
+// generador de tokens de tablas estáticas
 char *token(int pos, char *yytext, char *catalogo[], int tamano){
     int valor = 0;
     valor = buscar_catalogo(catalogo,yytext,tamano);
     printf("(%i,%i)",pos,valor);
+    
+    FILE *archTokens = abrir_archivo("tokens.txt","a");
+    fprintf(archTokens, "%i,%i\n", pos, valor);
+    cerrar_archivo(archTokens);
     return "Caracter";
 }
 
-// tokens dinámicos
+// Generador de tokens de tablas dinámicas
 char *token_simbolos(int pos, char *nombre, Simbolo **tabla) {
     *tabla = agrega_simbolo(*tabla, nombre);
-    int valor = buscar_simbolo(*tabla, nombre);
-    printf("(%i,%i)", pos, valor);
+    Simbolo *simbolo = buscar_simbolo(*tabla, nombre);
+    printf("(%i,%i)", pos, simbolo->valor);
+
+    FILE *archTokens = abrir_archivo("tokens.txt","a");
+    fprintf(archTokens, "%i,%i\n", pos, simbolo->valor);
+    cerrar_archivo(archTokens);
     return "Caracter";
 }
 
 char *token_literales(int pos, char *nombre, Literal **tabla) {
     *tabla = agrega_literal(*tabla, nombre);
-    int valor = buscar_literal(*tabla, nombre);
-    printf("(%i,%i)", pos, valor);
+    Literal *literal = buscar_literal(*tabla, nombre);
+    printf("(%i,%i)", pos, literal->valor);
+    
+    FILE *archTokens = abrir_archivo("tokens.txt","a");
+    fprintf(archTokens, "%i,%i\n", pos, literal->valor);
+    cerrar_archivo(archTokens);
     return "Caracter";
+}
+
+char *errores(char *yytext){
+    FILE *archErr = abrir_archivo("errores.txt","a");
+    fprintf(archErr, "Caracter no reconocido: %s\n", yytext);
+    cerrar_archivo(archErr);
+    return "Caracter";
+}
+
+// Manipulación de Archivos 
+FILE *abrir_archivo(const char *nombre_archivo, const char *modo) {
+    FILE *archivo = fopen(nombre_archivo, modo);
+    if (archivo == NULL) {
+        perror("Error al abrir el archivo");
+        exit(1); // Termina el programa si no se puede abrir el archivo
+    }
+    return archivo;
+}
+
+void cerrar_archivo(FILE *archivo) {
+    fclose(archivo);
 }
 
 %}
@@ -279,10 +311,11 @@ real (({ent}?'{digito}+)|({ent}[rR]))
 {real}          {token_literales(8, yytext, &tabla_reales); printf("%s es un real\n", yytext); }
 {ent}           {token_literales(8, yytext, &tabla_enteros);printf("%s es un entero\n", yytext); }
 [ \t\n\r]+ ; // Ignorar espacios, tabulaciones y saltos de      línea
-.              {printf("%s no es reconocido\n", yytext); }
+.              {errores(yytext); printf("%s no es reconocido\n", yytext); }
 %%
 
 int main(int argc, char **argv) {
+    // Lee desde un archivo 
     // Verificar si se proporcionó un archivo de entrada
     if (argc > 1) {
         FILE *file = fopen(argv[1], "r"); // Abrir el archivo en modo lectura
@@ -295,8 +328,30 @@ int main(int argc, char **argv) {
         printf("Uso: %s <archivo_de_entrada>\n", argv[0]);
         return 1;
     }
+
+    // Escribe los tokens
+    FILE *archTokens = abrir_archivo("tokens.txt","w");
+    fprintf(archTokens, ""); // Escribir algo inicial
+    cerrar_archivo(archTokens);
+
+    //Escribe los Errores 
+    FILE *archErr = abrir_archivo("errores.txt","w");
+    fprintf(archErr, ""); // Escribir algo inicial
+    cerrar_archivo(archErr);
+
     yylex();  // Ejecutar el analizador léxico
     // Cerrar el archivo después de usarlo
     fclose(yyin);
+
+    // Impresión de las tablas 
+    printf("\nTabla de simbolos\n");
+    imprimir_tabla_simbolos(tabla_simbolos);
+    printf("\nTabla de cadenas\n");
+    imprimir_tabla(tabla_cadenas);
+    printf("\nTabla de enteros\n");
+    imprimir_tabla(tabla_enteros);
+    printf("\nTabla de reales\n");
+    imprimir_tabla(tabla_reales);
+
     return 0;
 }
