@@ -1,4 +1,15 @@
 %{
+/*
+Elaborado por:
+Tapia Ledesma Angel Hazel 
+Arroyo Ramirez Carlos Alberto
+Fecha de elaboración: 17/03/2025
+
+Objetivo: Elaborar un analizador léxico en lex/flex que reconozca los componentes léxicos pertenecientes 
+a las clases abajo descritas y que fueron definidas en clase. 
+Generando un analizador el cual reconozca de forma óptima las componentes del lenguaje para así posteriormente 
+adjuntar su salida con la entrada del analizador sintáctico.
+*/
 #include <stdio.h>
 
 // Estructuras para las tablas
@@ -18,18 +29,22 @@ typedef struct Simbolo {
 // Prototipos de las funciones
 int buscar_catalogo(char *catalogo[], char *literal, int tamano);
 char *token(int pos, char *yytext, char *catalogo[], int tamano);
-void imprimir_tabla_simbolos(Simbolo *tabla);
+
 Simbolo *crear_tabla_simbolos();
 Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre);
 Simbolo *buscar_simbolo(Simbolo *tabla, char *nombre);
+void imprimir_tabla_simbolos(Simbolo *tabla);
+char *token_simbolos(int pos, char *nombre, Simbolo **tabla);
 
 FILE *abrir_archivo(const char *nombre_archivo, const char *modo);
 void cerrar_archivo(FILE*archivo);
+char *errores(char *yytext);
 
 Literal *crear_tabla();
 Literal *agrega_literal(Literal *tabla, char *literal);
 Literal *buscar_literal(Literal *tabla, char *literal);
 void imprimir_tabla(Literal *tabla);
+char *token_literales(int pos, char *nombre, Literal **tabla);
 
 // Creación de las tablas dinámicas
 Simbolo *tabla_simbolos = NULL;
@@ -107,9 +122,7 @@ char *opRel[6] = {
 // Funciones para la tabla de simbolos
  
 Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre) {
-    //imprimir_tabla_simbolos(tabla);
     Simbolo *res = buscar_simbolo(tabla,nombre);
-    //printf("%d\n",res);
 
     if( res == NULL){ // Checa si el elemento NO existe, para crearlo
         Simbolo *nuevoSimbolo = (Simbolo *)malloc(sizeof(Simbolo));
@@ -331,27 +344,31 @@ int main(int argc, char **argv) {
 
     // Escribe los tokens
     FILE *archTokens = abrir_archivo("tokens.txt","w");
-    fprintf(archTokens, ""); // Escribir algo inicial
+    fprintf(archTokens, ""); // Sobreescribe cada vez que se inicia el programa para que inicie vacío
     cerrar_archivo(archTokens);
 
     //Escribe los Errores 
     FILE *archErr = abrir_archivo("errores.txt","w");
-    fprintf(archErr, ""); // Escribir algo inicial
+    fprintf(archErr, ""); // Sobreescribe cada vez que se inicia el programa para que inicie vacío
     cerrar_archivo(archErr);
 
     yylex();  // Ejecutar el analizador léxico
-    // Cerrar el archivo después de usarlo
     fclose(yyin);
 
-    // Impresión de las tablas 
+    // Impresión de las tablas en consola
     printf("\nTabla de simbolos\n");
     imprimir_tabla_simbolos(tabla_simbolos);
+
     printf("\nTabla de cadenas\n");
     imprimir_tabla(tabla_cadenas);
+
     printf("\nTabla de enteros\n");
     imprimir_tabla(tabla_enteros);
+    
     printf("\nTabla de reales\n");
     imprimir_tabla(tabla_reales);
+
+    // impresión de tablas en archivos
 
     return 0;
 }
