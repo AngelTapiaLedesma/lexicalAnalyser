@@ -3,7 +3,7 @@
 Elaborado por:
 Tapia Ledesma Angel Hazel 
 Arroyo Ramirez Carlos Alberto
-Fecha de elaboración: 17/03/2025
+Fecha de entrega: 18/03/2025
 
 Objetivo: Elaborar un analizador léxico en lex/flex que reconozca los componentes léxicos pertenecientes 
 a las clases abajo descritas y que fueron definidas en clase. 
@@ -33,7 +33,7 @@ char *token(int pos, char *yytext, char *catalogo[], int tamano);
 Simbolo *crear_tabla_simbolos();
 Simbolo *agrega_simbolo(Simbolo *tabla, char *nombre);
 Simbolo *buscar_simbolo(Simbolo *tabla, char *nombre);
-void imprimir_tabla_simbolos(Simbolo *tabla);
+void imprimir_tabla_simbolos(Simbolo *tabla, char *nombre_arch);
 char *token_simbolos(int pos, char *nombre, Simbolo **tabla);
 
 FILE *abrir_archivo(const char *nombre_archivo, const char *modo);
@@ -43,7 +43,7 @@ char *errores(char *yytext);
 Literal *crear_tabla();
 Literal *agrega_literal(Literal *tabla, char *literal);
 Literal *buscar_literal(Literal *tabla, char *literal);
-void imprimir_tabla(Literal *tabla);
+void imprimir_tabla(Literal *tabla, char *nombre_arch);
 char *token_literales(int pos, char *nombre, Literal **tabla);
 
 // Creación de las tablas dinámicas
@@ -155,18 +155,21 @@ Simbolo *buscar_simbolo(Simbolo *tabla, char *nombre) {
     return NULL;
 }
 
-void imprimir_tabla_simbolos(Simbolo *tabla) {
+void imprimir_tabla_simbolos(Simbolo *tabla, char *nombre_arch) {
     Simbolo *actual = tabla;
-
+    FILE *archTablas = abrir_archivo(nombre_arch,"a");
     if (actual == NULL) {
         printf("La tabla de símbolos está vacía.\n");
         return;
     }
     printf("Pos\tNombre\t\tTipo\n");
+    fprintf(archTablas,"Pos\tNombre\t\tTipo\n");
     while (actual != NULL) {
         printf("%d\t%s\t%d\n",actual->valor, actual->nombre, actual->tipo);
+	    fprintf(archTablas,"%d\t%s\t%d\n",actual->valor, actual->nombre, actual->tipo);
         actual = actual->siguiente;
     }
+    cerrar_archivo(archTablas);
 }
 
 // Funciones para las tablas de cadenas, reales y enteros
@@ -206,18 +209,22 @@ Literal *buscar_literal(Literal *tabla, char *literal) {
     return NULL;
 }
 
-void imprimir_tabla(Literal *tabla) {
+void imprimir_tabla(Literal *tabla, char *nombre_arch) {
     Literal *actual = tabla;
+    FILE *archTablas = abrir_archivo(nombre_arch,"a");
 
     if (actual == NULL) {
         printf("La tabla de literales está vacía.\n");
         return;
     }
+    fprintf(archTablas,"Pos\tLiteral\n");
     printf("Pos\tLiteral\n");
     while (actual != NULL) {
         printf("%d\t%s\n", actual->valor, actual->literal);
+        fprintf(archTablas,"%d\t%s\n", actual->valor, actual->literal);
         actual = actual->siguiente;
     }
+    cerrar_archivo(archTablas);
 }
 
 int buscar_catalogo(char *catalogo[], char *literal, int tamano) {
@@ -305,7 +312,7 @@ opAsign "->"|"+->"|"-->"|"*->"|"/->"|"%->"|">>->"|"<<->"|"^->"|"&->"
 
 identificador @({letra}|{digito})+_
 
-cadena --.+--
+cadena --.*--
 
 ent [+-]?(0|[1-9]{digito}*)[pg]?
 
@@ -351,24 +358,42 @@ int main(int argc, char **argv) {
     FILE *archErr = abrir_archivo("errores.txt","w");
     fprintf(archErr, ""); // Sobreescribe cada vez que se inicia el programa para que inicie vacío
     cerrar_archivo(archErr);
+    
+    //Escribe la tabla de simbolos 
+    FILE *archSimbolos = abrir_archivo("simbolos.txt","w");
+    fprintf(archSimbolos, ""); // Sobreescribe cada vez que se inicia el programa para que inicie vacío
+    cerrar_archivo(archSimbolos);
+    
+    //Escribe la tabla de enteros 
+    FILE *archEnteros = abrir_archivo("enteros.txt","w");
+    fprintf(archEnteros, ""); // Sobreescribe cada vez que se inicia el programa para que inicie vacío
+    cerrar_archivo(archEnteros);
+    
+    //Escribe la tabla de flotantes 
+    FILE *archFlotantes = abrir_archivo("reales.txt","w");
+    fprintf(archFlotantes, ""); // Sobreescribe cada vez que se inicia el programa para que inicie vacío
+    cerrar_archivo(archFlotantes);
+
+    //Escribe la tabla de cadenas
+    FILE *archCadenas = abrir_archivo("cadenas.txt","w");
+    fprintf(archCadenas, ""); // Sobreescribe cada vez que se inicia el programa para que inicie vacío
+    cerrar_archivo(archCadenas);
 
     yylex();  // Ejecutar el analizador léxico
     fclose(yyin);
 
     // Impresión de las tablas en consola
     printf("\nTabla de simbolos\n");
-    imprimir_tabla_simbolos(tabla_simbolos);
+    imprimir_tabla_simbolos(tabla_simbolos, "simbolos.txt");
 
     printf("\nTabla de cadenas\n");
-    imprimir_tabla(tabla_cadenas);
+    imprimir_tabla(tabla_cadenas, "cadenas.txt");
 
     printf("\nTabla de enteros\n");
-    imprimir_tabla(tabla_enteros);
+    imprimir_tabla(tabla_enteros,"enteros.txt");
     
     printf("\nTabla de reales\n");
-    imprimir_tabla(tabla_reales);
-
-    // impresión de tablas en archivos
+    imprimir_tabla(tabla_reales, "reales.txt");
 
     return 0;
 }
